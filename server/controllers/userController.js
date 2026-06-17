@@ -13,8 +13,11 @@ const clerkWebHooks = async (req, res) => {
       "svix-timestamp": req.headers["svix-timestamp"],
       "svix-signature": req.headers["svix-signature"],
     });
-
+    console.log("Webhook verified");
+    console.log(JSON.stringify(req.body, null, 2));
     const { data, type } = req.body;
+    console.log(req.body);
+    console.log(type);
     switch (type) {
       case "user.created": {
         const userData = {
@@ -24,7 +27,8 @@ const clerkWebHooks = async (req, res) => {
           lastName: data.last_name,
           photo: data.image_url,
         };
-        await userModel.create(userData);
+        const user = await userModel.create(userData);
+        console.log(user);
         res.status(200).json({});
         break;
       }

@@ -9,7 +9,7 @@ import { useClerk } from "@clerk/react";
 const App = () => {
   const clerk = useClerk();
 
-  console.log(clerk);
+  // console.log(clerk);
   return (
     <div className="min-h-screen bg-slate-50">
       <Navbar />
