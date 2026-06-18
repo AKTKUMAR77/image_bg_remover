@@ -28,6 +28,9 @@ const BuyCredit = () => {
           </div>
         ))}
       </div>
+      <h1 className="mb-6 sm:mb-10 text-center text-sm mt-4 font-semibold bg-gradient-to-r from-gray-900 to-gray-400 bg-clip-text text-transparent">
+        Payment Option Coming Soon, meanwhile enjoy the free tier
+      </h1>
     </div>
   );
 };

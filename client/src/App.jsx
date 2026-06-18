@@ -6,12 +6,14 @@ import BuyCredit from "./pages/BuyCredit.jsx";
 import Navbar from "./components/Navbar.jsx";
 import Footer from "./components/Footer.jsx";
 import { useClerk } from "@clerk/react";
+import { ToastContainer, toast } from "react-toastify";
 const App = () => {
   const clerk = useClerk();
 
   // console.log(clerk);
   return (
     <div className="min-h-screen bg-slate-50">
+      <ToastContainer position="bottom-right" />
       <Navbar />
       <Routes>
         <Route path="/" element={<Home />} />

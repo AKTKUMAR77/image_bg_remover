@@ -13,11 +13,11 @@ const clerkWebHooks = async (req, res) => {
       "svix-timestamp": req.headers["svix-timestamp"],
       "svix-signature": req.headers["svix-signature"],
     });
-    console.log("Webhook verified");
-    console.log(JSON.stringify(req.body, null, 2));
+    // console.log("Webhook verified");
+    // console.log(JSON.stringify(req.body, null, 2));
     const { data, type } = req.body;
-    console.log(req.body);
-    console.log(type);
+    // console.log(req.body);
+    // console.log(type);
     switch (type) {
       case "user.created": {
         const userData = {
@@ -53,8 +53,20 @@ const clerkWebHooks = async (req, res) => {
     }
   } catch (error) {
     console.log(error.message);
-    res.status(200).json({ success: false, message: error.message });
+    res.status(400).json({ success: false, message: error.message });
   }
 };
 
-export { clerkWebHooks };
+// API Controller to get user available credit data
+const userCredit = async (req, res) => {
+  try {
+    const clerkId = req.clerkId;
+    const userData = await userModel.findOne({ clerkId });
+    res.status(200).json({ success: true, credits: userData.creditBalance });
+  } catch (error) {
+    console.log(error.message);
+    res.status(400).json({ success: false, message: error.message });
+  }
+};
+
+export { clerkWebHooks, userCredit };
